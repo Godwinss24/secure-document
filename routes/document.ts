@@ -2,7 +2,8 @@ import express, { Router } from 'express';
 import multer from 'multer';
 import authenticateToken from '../utilities/auth';
 import { createDocumentControl } from '../controllers/document/create-document.controller';
-import { findAllDocumentsControl } from '../controllers/document/get-document.controller';
+import { findAllDocumentsControl, findDocumentByIDControl } from '../controllers/document/get-document.controller';
+import { findOneDocumentByID } from '../services/document/document.service';
 
 
 const router: Router = express.Router();
@@ -111,5 +112,48 @@ router.post('/', authenticateToken, upload.single('file'), createDocumentControl
  *         description: Server error
  */
 router.get('/all', authenticateToken, findAllDocumentsControl);
+
+/**
+ * @swagger
+ * /document/{id}:
+ *   get:
+ *     summary: Get a document by ID
+ *     tags: [Documents]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the document to retrieve
+ *     responses:
+ *       200:
+ *         description: Document retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 successful:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: object
+ *                 message:
+ *                   type: string
+ *                   example: Document retrieved
+ *       400:
+ *         description: Invalid ID format
+ *       401:
+ *         description: Unauthorized - Invalid or missing token
+ *       404:
+ *         description: Document not found
+ *       500:
+ *         description: Server error
+ */
+
+router.get('/:id', authenticateToken, findDocumentByIDControl);
 
 module.exports = router;

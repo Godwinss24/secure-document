@@ -10,6 +10,14 @@ export async function createDocument(userId: string, title: string, description:
 }
 
 
+export async function findOneDocumentByID(id:string, userId: string) {
+    return await Document.findOne({
+        where: {
+            id, userId
+        }
+    })
+}
+
 export async function findAllDocuments(
     userId: string,
     page: number = 1,
