@@ -59,10 +59,3 @@ Fetch metadata or access link for a specific document.
 - 🔓 Support one-time-access tokens
 - 📅 Auto-delete expired or unused files
 
----
-
-## 🧪 Local Development
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/yourusername/secure-document-vault.git
