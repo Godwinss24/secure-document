@@ -5,3 +5,8 @@ export interface FindAllRequest extends CustomRequest {
         page?: string, limit?: string, search?:string
     }
 }
+export interface FindByIdRequest extends CustomRequest {
+    params: {
+      id: string
+    }
+}

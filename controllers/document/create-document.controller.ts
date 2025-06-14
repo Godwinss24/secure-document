@@ -11,7 +11,7 @@ export const createDocumentControl = async (req: CreateDocumentRequest, res: Res
 
     const { title, description } = req.body;
 
-    const responseData: ApiResponse<null> = {
+    const responseData: ApiResponse<null | string > = {
         data: null,
         message: '',
         successful: false
@@ -41,7 +41,7 @@ export const createDocumentControl = async (req: CreateDocumentRequest, res: Res
         await createDocument(user.id, title, description, imageURL);
 
 
-        responseData.data = null;
+        responseData.data = imageURL;
         responseData.message = 'Document created successfully.';
         responseData.successful = true;
         res.status(200).json(responseData);

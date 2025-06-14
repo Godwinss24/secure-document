@@ -39,12 +39,12 @@ Cloudinary ensures your uploaded files are **not publicly exposed** unless expli
 
 ## 📄 API Endpoints
 
-### `POST /upload`
-Upload a document to Cloudinary.
+### `POST /document`
+Create a document.
 - **Request:** `multipart/form-data` with a file
 - **Response:** JSON containing the Cloudinary URL
 
-### `GET /documents`
+### `GET /documents/all`
 Returns a list of uploaded documents (per user or global, depending on implementation).
 
 ### `GET /documents/:id`
@@ -59,3 +59,19 @@ Fetch metadata or access link for a specific document.
 - 🔓 Support one-time-access tokens
 - 📅 Auto-delete expired or unused files
 
+# Database connection (e.g., PostgreSQL, MySQL, etc.)
+DATABASE_URL=
+
+# Your server's base URL (used in email links, callbacks, etc.)
+SERVER_URL=http://localhost:3000
+
+# Cloudinary configuration (used for uploading and storing documents)
+CLOUD_NAME=
+API_KEY=
+API_SECRET=
+
+# Secret used to sign JWT tokens (should be long and secure)
+JWT_SECRET=
+
+# Secret key for AES-256 encryption (must be 64 hex characters = 32 bytes)
+ENCRYPTION_KEY=
